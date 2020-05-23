@@ -24,5 +24,8 @@ Route::group(["middleware" => "api"], function () {
 
         Route::post('/logout', 'Auth\SecurityController@logout');
 
+        Route::resource('company', 'CompanyController')->except([
+            'create'
+        ]);
     });
 });
