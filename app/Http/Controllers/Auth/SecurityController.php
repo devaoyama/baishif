@@ -26,7 +26,9 @@ class SecurityController extends Controller
 
         event(new Registered($user = User::registerUser($input)));
 
-        return response()->json($user);
+        $token = auth()->login($user);
+
+        return response()->json($token);
     }
 
     public function login(LoginRequest $request)
