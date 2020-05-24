@@ -29,7 +29,6 @@ class CompanyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      */
     public function store(CompanyRequest $request): JsonResponse
     {
@@ -64,7 +63,7 @@ class CompanyController extends Controller
     public function update(CompanyRequest $request, Company $company): JsonResponse
     {
         $company->fill($request->all());
-        $company->save();
+        $company->update();
         return new JsonResponse($company);
     }
 

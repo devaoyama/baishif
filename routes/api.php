@@ -27,5 +27,9 @@ Route::group(["middleware" => "api"], function () {
         Route::resource('company', 'CompanyController')->except([
             'create'
         ]);
+
+        Route::resource('shift', 'ShiftController')->except([
+            'create'
+        ]);
     });
 });
