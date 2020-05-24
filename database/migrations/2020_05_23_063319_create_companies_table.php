@@ -17,11 +17,10 @@ class CreateCompaniesTable extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->string('name');
-            $table->string('occupation');
             $table->integer('hourly_rate');
-            $table->integer('holiday_hourly_rate');
-            $table->integer('midnight_hourly_rate_increase_rate');
-            $table->integer('transportation_costs');
+            $table->integer('holiday_hourly_rate')->nullable();
+            $table->integer('midnight_hourly_rate_increase_rate')->default(0);
+            $table->integer('transportation_costs')->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
