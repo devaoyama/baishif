@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ShiftRequest;
 use App\Repositories\Shift\ShiftRepositoryInterface;
+use App\Services\Shift\ShiftSalary\ShiftSalaryCalculatorInterface;
 use App\Shift;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -31,9 +32,10 @@ class ShiftController extends Controller
      * Store a newly created resource in storage.
      *
      */
-    public function store(ShiftRequest $request, Shift $shift)
+    public function store(ShiftRequest $request, Shift $shift, ShiftSalaryCalculatorInterface $calculator)
     {
         $shift = $this->shiftRepository->create($shift, $request->all());
+        $calculator->calculate($shift);
         return new JsonResponse($shift);
     }
 
@@ -59,9 +61,10 @@ class ShiftController extends Controller
      * Update the specified resource in storage.
      *
      */
-    public function update(Request $request, Shift $shift)
+    public function update(Request $request, Shift $shift, ShiftSalaryCalculatorInterface $calculator)
     {
         $shift = $this->shiftRepository->update($shift, $request->all());
+        $calculator->calculate($shift);
         return new JsonResponse($shift);
     }
 

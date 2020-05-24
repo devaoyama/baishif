@@ -11,6 +11,11 @@ class Shift extends Model
         'status',
         'start_at',
         'finish_at',
-        'salary',
+        'break_minutes'
     ];
+
+    public function company()
+    {
+        return $this->belongsTo('App\Company');
+    }
 }
