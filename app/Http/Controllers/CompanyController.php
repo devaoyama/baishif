@@ -14,6 +14,7 @@ class CompanyController extends Controller
     public function __construct(CompanyRepositoryInterface $repository)
     {
         $this->companyRepository = $repository;
+        $this->authorizeResource(Company::class, 'company');
     }
 
     /**
@@ -41,33 +42,27 @@ class CompanyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
      */
-    public function show($id): JsonResponse
+    public function show(Company $company): JsonResponse
     {
-        return new JsonResponse($this->companyRepository->findById($id));
+        return new JsonResponse($company);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
      */
-    public function edit($id): JsonResponse
+    public function edit(Company $company): JsonResponse
     {
-        return new JsonResponse($this->companyRepository->findById($id));
+        return new JsonResponse($company);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      */
-    public function update(CompanyRequest $request, $id): JsonResponse
+    public function update(CompanyRequest $request, Company $company): JsonResponse
     {
-        /** @var Company $company */
-        $company = $this->companyRepository->findById($id);
         $company->fill($request->all());
         $company->save();
         return new JsonResponse($company);
@@ -76,13 +71,9 @@ class CompanyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return JsonResponse
      */
-    public function destroy($id): JsonResponse
+    public function destroy(Company $company): JsonResponse
     {
-        /** @var Company $company */
-        $company = $this->companyRepository->findById($id);
         $company->delete();
         return new JsonResponse($company);
     }
