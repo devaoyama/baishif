@@ -1,21 +1,18 @@
 <?php
 
-
 namespace App\Repositories\Company;
 
-
 use App\Company;
-use Illuminate\Database\Eloquent\Collection;
 
 interface CompanyRepositoryInterface
 {
-    /**
-     * @return Company
-     */
-    public function getAll(): ?Object;
+    public function getAll();
 
-    /**
-     * @return Company
-     */
-    public function findById(Int $id): ?Company;
+    public function find(Int $id);
+
+    public function create(Company $company, array $data);
+
+    public function update(Company $company, array $data);
+
+    public function delete(Company $company);
 }

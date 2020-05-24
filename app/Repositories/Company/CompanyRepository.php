@@ -1,11 +1,8 @@
 <?php
 
-
 namespace App\Repositories\Company;
 
-
 use App\Company;
-use Illuminate\Database\Eloquent\Collection;
 
 class CompanyRepository implements CompanyRepositoryInterface
 {
@@ -14,8 +11,26 @@ class CompanyRepository implements CompanyRepositoryInterface
         return auth()->user()->companies;
     }
 
-    public function findById(int $id): ?Company
+    public function find(int $id): ?Company
     {
         return Company::find($id);
+    }
+
+    public function create(Company $company, array $data)
+    {
+        $company->fill($data);
+        auth()->user()->companies()->save($company);
+        return $company;
+    }
+
+    public function update(Company $company, array $data)
+    {
+        $company->fill($data)->save();
+        return $company;
+    }
+
+    public function delete(Company $company)
+    {
+        return $company->delete();
     }
 }

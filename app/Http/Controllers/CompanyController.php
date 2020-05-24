@@ -11,9 +11,9 @@ class CompanyController extends Controller
 {
     private $companyRepository;
 
-    public function __construct(CompanyRepositoryInterface $repository)
+    public function __construct(CompanyRepositoryInterface $companyRepository)
     {
-        $this->companyRepository = $repository;
+        $this->companyRepository = $companyRepository;
         $this->authorizeResource(Company::class, 'company');
     }
 
@@ -30,11 +30,9 @@ class CompanyController extends Controller
      * Store a newly created resource in storage.
      *
      */
-    public function store(CompanyRequest $request): JsonResponse
+    public function store(CompanyRequest $request, Company $company): JsonResponse
     {
-        $company = new Company();
-        $company->fill($request->all());
-        $company = auth()->user()->companies()->save($company);
+        $company = $this->companyRepository->create($company, $request->all());
         return new JsonResponse($company);
     }
 
@@ -62,8 +60,7 @@ class CompanyController extends Controller
      */
     public function update(CompanyRequest $request, Company $company): JsonResponse
     {
-        $company->fill($request->all());
-        $company->update();
+        $company = $this->companyRepository->update($company, $request->all());
         return new JsonResponse($company);
     }
 
@@ -73,7 +70,7 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company): JsonResponse
     {
-        $company->delete();
+        $this->companyRepository->delete($company);
         return new JsonResponse($company);
     }
 }

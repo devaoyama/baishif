@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ShiftRequest;
+use App\Repositories\Shift\ShiftRepositoryInterface;
 use App\Shift;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class ShiftController extends Controller
 {
-    public function __construct()
+    private $shiftRepository;
+
+    public function __construct(ShiftRepositoryInterface $shiftRepository)
     {
         $this->authorizeResource(Shift::class, 'shift');
+        $this->shiftRepository = $shiftRepository;
     }
 
     /**
@@ -20,7 +24,7 @@ class ShiftController extends Controller
      */
     public function index(): JsonResponse
     {
-        return new JsonResponse(auth()->user()->shifts);
+        return new JsonResponse($this->shiftRepository->getAll());
     }
 
     /**
@@ -29,9 +33,7 @@ class ShiftController extends Controller
      */
     public function store(ShiftRequest $request, Shift $shift)
     {
-        $shift->fill($request->all());
-        $shift = auth()->user()->shifts()->save($shift);
-
+        $shift = $this->shiftRepository->create($shift, $request->all());
         return new JsonResponse($shift);
     }
 
@@ -59,8 +61,7 @@ class ShiftController extends Controller
      */
     public function update(Request $request, Shift $shift)
     {
-        $shift->fill($request->all());
-        $shift->update();
+        $shift = $this->shiftRepository->update($shift, $request->all());
         return new JsonResponse($shift);
     }
 
@@ -70,7 +71,7 @@ class ShiftController extends Controller
      */
     public function destroy(Shift $shift)
     {
-        $shift->delete();
+        $this->shiftRepository->delete($shift);
         return new JsonResponse($shift);
     }
 }
