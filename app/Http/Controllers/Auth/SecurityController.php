@@ -45,6 +45,11 @@ class SecurityController extends Controller
         return new JsonResponse($token);
     }
 
+    public function getUser()
+    {
+        return new JsonResponse(auth()->user());
+    }
+
     public function logout(Request $request)
     {
         auth()->logout();
