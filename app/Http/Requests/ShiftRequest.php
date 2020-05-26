@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
 
-class RegisterRequest extends FormRequest
+class ShiftRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,9 +27,10 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'company_id' => ['required', 'exists:companies,id'],
+            'status' => ['boolean'],
+            'start_at' => ['required', 'date', 'before:finish_at'],
+            'finish_at' => ['required', 'date', 'after:start_at'],
         ];
     }
 

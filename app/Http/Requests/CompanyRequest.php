@@ -28,7 +28,6 @@ class CompanyRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:100'],
-            'occupation' => ['required', 'string', 'max:50000'],
             'hourly_rate' => ['required', 'integer', 'min:0', 'max:50000'],
             'holiday_hourly_rate' => ['nullable', 'integer', 'min:0', 'max:50000'],
             'midnight_hourly_rate_increase_rate' => ['nullable', 'integer', 'min:0', 'max:100'],

@@ -22,9 +22,15 @@ Route::group(["middleware" => "api"], function () {
 
     Route::group(['middleware' => ['jwt.auth']], function () {
 
+        Route::get('/me', 'Auth\SecurityController@getUser');
+
         Route::post('/logout', 'Auth\SecurityController@logout');
 
         Route::resource('company', 'CompanyController')->except([
+            'create'
+        ]);
+
+        Route::resource('shift', 'ShiftController')->except([
             'create'
         ]);
     });
