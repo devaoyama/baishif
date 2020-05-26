@@ -19,8 +19,8 @@ class CreateCompaniesTable extends Migration
             $table->string('name');
             $table->integer('hourly_rate');
             $table->integer('holiday_hourly_rate')->nullable();
-            $table->integer('midnight_hourly_rate_increase_rate')->default(0);
-            $table->integer('transportation_costs')->default(0);
+            $table->integer('midnight_hourly_rate_increase_rate')->default(0)->nullable();
+            $table->integer('transportation_costs')->default(0)->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
