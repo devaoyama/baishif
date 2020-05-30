@@ -11,7 +11,8 @@ class Shift extends Model
         'status',
         'start_at',
         'finish_at',
-        'break_minutes'
+        'break_minutes',
+        'salary',
     ];
 
     public function company()

@@ -10,6 +10,10 @@ class ShiftSalaryCalculator implements ShiftSalaryCalculatorInterface
 {
     public function calculate(Shift $shift): void
     {
+        if ($shift->salary) {
+            return;
+        }
+
         // 基本給
         $startAt = new \DateTime($shift->start_at);
         $finishAt = new \DateTime($shift->finish_at);

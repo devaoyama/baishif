@@ -20,12 +20,18 @@ class CreateShiftsTable extends Migration
             $table->boolean('status')->default(0);
             $table->dateTime('start_at');
             $table->dateTime('finish_at');
-            $table->integer('break_minutes')->default(0);
+            $table->integer('break_minutes')->default(0)->nullable();
             $table->integer('salary');
+            $table->string('share_id')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('company_id')->references('id')->on('companies');
+            $table
+                ->foreign('company_id')
+                ->references('id')
+                ->on('companies')
+                ->onDelete('cascade')
+            ;
         });
     }
 

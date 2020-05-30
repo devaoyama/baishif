@@ -31,6 +31,8 @@ class ShiftRequest extends FormRequest
             'status' => ['boolean'],
             'start_at' => ['required', 'date', 'before:finish_at'],
             'finish_at' => ['required', 'date', 'after:start_at'],
+            'break_minutes' => ['nullable', 'integer', 'min:0'],
+            'salary' => ['nullable', 'integer'],
         ];
     }
 

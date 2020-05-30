@@ -20,6 +20,8 @@ Route::group(["middleware" => "api"], function () {
 
     Route::post('/login', 'Auth\SecurityController@login');
 
+    Route::get('/shift/share', 'ShareController@getByShareId');
+
     Route::group(['middleware' => ['jwt.auth']], function () {
 
         Route::get('/me', 'Auth\SecurityController@getUser');
@@ -33,5 +35,9 @@ Route::group(["middleware" => "api"], function () {
         Route::resource('shift', 'ShiftController')->except([
             'create'
         ]);
+
+        Route::patch('/shift/share/set', 'ShareController@setShareId');
+
+        Route::patch('/shift/share/delete', 'ShareController@deleteShareId');
     });
 });
