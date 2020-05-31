@@ -14,7 +14,7 @@ class ShiftPolicy
      * Determine whether the user can view any models.
      *
      * @param  \App\User  $user
-     * @return mixed
+     * @return bool
      */
     public function viewAny(User $user)
     {
@@ -26,7 +26,7 @@ class ShiftPolicy
      *
      * @param  \App\User  $user
      * @param  \App\Shift  $shift
-     * @return mixed
+     * @return bool
      */
     public function view(User $user, Shift $shift)
     {
@@ -37,7 +37,7 @@ class ShiftPolicy
      * Determine whether the user can create models.
      *
      * @param  \App\User  $user
-     * @return mixed
+     * @return bool
      */
     public function create(User $user)
     {
@@ -49,11 +49,11 @@ class ShiftPolicy
      *
      * @param  \App\User  $user
      * @param  \App\Shift  $shift
-     * @return mixed
+     * @return bool
      */
     public function update(User $user, Shift $shift)
     {
-        return $user->id === $shift->user_id;
+        return $user->id == $shift->user_id;
     }
 
     /**
@@ -61,10 +61,10 @@ class ShiftPolicy
      *
      * @param  \App\User  $user
      * @param  \App\Shift  $shift
-     * @return mixed
+     * @return bool
      */
     public function delete(User $user, Shift $shift)
     {
-        return $user->id === $shift->user_id;
+        return $user->id == $shift->user_id;
     }
 }

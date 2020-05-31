@@ -30,7 +30,7 @@ class CompanyPolicy
      */
     public function view(User $user, Company $company)
     {
-        return $user->id === $company->user_id;
+        return $user->id == $company->user_id;
     }
 
     /**
@@ -53,7 +53,7 @@ class CompanyPolicy
      */
     public function update(User $user, Company $company)
     {
-        return $user->id === $company->user_id;
+        return $user->id == $company->user_id;
     }
 
     /**
@@ -65,6 +65,6 @@ class CompanyPolicy
      */
     public function delete(User $user, Company $company)
     {
-        return $user->id === $company->user_id;
+        return $user->id == $company->user_id;
     }
 }

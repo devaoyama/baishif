@@ -31,7 +31,7 @@ class ShiftController extends Controller
      * Store a newly created resource in storage.
      *
      */
-    public function store(ShiftRequest $request, Shift $shift)
+    public function store(ShiftRequest $request, Shift $shift): JsonResponse
     {
         $shift = $this->shiftRepository->create($shift, $request->all());
         return new JsonResponse($shift);
@@ -41,7 +41,7 @@ class ShiftController extends Controller
      * Display the specified resource.
      *
      */
-    public function show(Shift $shift)
+    public function show(Shift $shift): JsonResponse
     {
         return new JsonResponse($shift);
     }
@@ -50,7 +50,7 @@ class ShiftController extends Controller
      * Show the form for editing the specified resource.
      *
      */
-    public function edit(Shift $shift)
+    public function edit(Shift $shift):JsonResponse
     {
         return new JsonResponse($shift);
     }
@@ -59,7 +59,7 @@ class ShiftController extends Controller
      * Update the specified resource in storage.
      *
      */
-    public function update(ShiftRequest $request, Shift $shift)
+    public function update(ShiftRequest $request, Shift $shift): JsonResponse
     {
         $shift = $this->shiftRepository->update($shift, $request->all());
         return new JsonResponse($shift);
@@ -69,7 +69,7 @@ class ShiftController extends Controller
      * Remove the specified resource from storage.
      *
      */
-    public function destroy(Shift $shift)
+    public function destroy(Shift $shift): JsonResponse
     {
         $this->shiftRepository->delete($shift);
         return new JsonResponse($shift);
