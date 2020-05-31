@@ -30,7 +30,7 @@ class ShiftPolicy
      */
     public function view(User $user, Shift $shift)
     {
-        return $user->id === $shift->user_id;
+        return $user->id == $shift->user_id;
     }
 
     /**
