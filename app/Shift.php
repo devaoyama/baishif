@@ -15,6 +15,11 @@ class Shift extends Model
         'salary',
     ];
 
+    protected $casts = [
+        'company_id' => 'integer',
+        'status' => 'integer',
+    ];
+
     public function company()
     {
         return $this->belongsTo('App\Company');
