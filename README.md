@@ -1,5 +1,13 @@
 # バイシフ
-シフトマネージャー
+![スクリーンショット 2020-11-23 14 19 20](https://user-images.githubusercontent.com/56750754/99931913-a8ca2b80-2d99-11eb-836b-73ccfb17aec6.png)
+- シフト管理
+- シフト共有
+
+###### [フロントエンドのコード](https://github.com/devkeita/baishif-front)
+
+## 使用技術
+- PHP/Laravel
+- Javascript/Vue/Nuxt/Vuetify
 
 ## 目的
 
@@ -9,8 +17,7 @@
 
 ## ターゲット
 
-- アルバイトをしている学生
-- アルバイトをしている主婦
+- アルバイトをしている人
 
 ## 機能
 
